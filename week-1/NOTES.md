@@ -7,15 +7,19 @@
 		* In person possible
 		* Comunication 
 			* Website TBC
-			* 
+			* [Github](https://github.com/meredityman/pfca-code)
 	* Students Introductions
 		* Name, Background
 		* Experience with python
-		* Projects they are interested in working on
+		* Projects you areinterested in working on
 * 19:30-20:00 - Artist's presentation
 * 20:00-20:10 - Break
 * 20:10-21:00 - Python 101
+	* Introduction
+	* Installing
+	* Hello World!
 
+## Notes on Python
 
 ## Python 101
 
@@ -29,6 +33,7 @@
 	- MacOS - Command key + Spacebar
 	- Linux  - Ctrl + Alt + T
 -  The python interpreter
+	- Alternative - [link](https://www.programiz.com/python-programming/online-compiler/)
 -  Running Python scripts
 -  Basic data types: integers, floats, strings, and booleans
 -  Lists and tuples
