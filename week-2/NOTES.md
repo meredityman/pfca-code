@@ -4,9 +4,11 @@
 	* Python 101
 	* Introduction
 	* Installing
-	* Hello World!
-	* First example
+	* Python on the command line
+	* Running Python scripts
+	* Hello World
+	* Basic syntax/Data types
 * 20:00-20:10 - Break
 * 20:10-21:00
-    * Data types
+    * Story generator example.
     * Loading and saving CSV and JSON files
