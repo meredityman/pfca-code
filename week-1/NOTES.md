@@ -7,23 +7,20 @@
 		* In person possible?
 		* Communication 
 			* Recordings
-			* [Discourse] - (https://discourse.schoolofma.org/c/pythonforconfusedartists)
+			* [Discourse](https://discourse.schoolofma.org/c/pythonforconfusedartists)
 			* [Github](https://github.com/meredityman/pfca-code)
 	* Students Introductions
 		* Name, Background
 		* Experience with python
 		* Projects you are interested in working on.
-	* Software
+	* About the course
+		* Two monitors
 		* Python
 		* VS Code
 		* Git
-* 19:30-20:00 - General presentation
+* 19:30-20:00 - Introductions
 * 20:00-20:10 - Break
-* 20:10-21:00 - Python 101
-	* Introduction
-	* Installing
-	* Hello World!
-	* First example
+* 20:10-21:00 - General presentation
 
 ## Notes on Python
 
