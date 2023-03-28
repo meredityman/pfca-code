@@ -2,10 +2,26 @@ import random
 
 
 firstNames = [
-    "Xriii",    # 0
-    "Griggle",  # 1
-    "Sldfy",    # 2
-    "Wifrt"     # 3
+    "Zorin",
+    "Valtor",
+    "Nexa",
+    "Xandar",
+    "Qezal",
+    "Tazra",
+    "Krynn",
+    "Wryx",
+    "Yalara",
+    "Gornax",
+    "Nalax",
+    "Felnor",
+    "Zeltrax",
+    "Traxx",
+    "Rynex",
+    "Vexon",
+    "Kylera",
+    "Jaxar",
+    "Zylar",
+    "Zethron"
 ]
 
 secondNames = [
@@ -14,6 +30,27 @@ secondNames = [
     "Leeber",
     "Fromw"
 ]
+
+
+story_starts = [
+    "a plumber", 
+    "an astronaut", 
+    "a loner"
+]
+story_ends   = [
+    "became a sardine", 
+    "took up tufting as a hobby", 
+    "ate a whole box of donuts"
+]
+consequences = [
+    "deeply contented", 
+    "inclines to enter the crypto-marketing space", 
+    "increasingly obsessed with flower arranging"
+]
+
+
+story_format = "Started life as {story_start_var} and later {story_end_var}. As a result they feels {consequence_var}."
+
 
 
 def getRandomListEntry(myList):
@@ -26,8 +63,20 @@ def main():
     randomFirstName = getRandomListEntry(firstNames)
     randomSecondName = getRandomListEntry(secondNames)
 
+    story_start = getRandomListEntry(story_starts)
+    story_end   = getRandomListEntry(story_ends)
+    consequence = getRandomListEntry(consequences)
+
+    story = story_format.format(
+        story_start_var = story_start,
+        story_end_var   = story_end,
+        consequence_var = consequence
+    )   
+
     fullRandomName = randomFirstName + " " + randomSecondName
-    print(fullRandomName)
+
+    print(f"Name: {fullRandomName}")
+    print(f"Story:\n{story}")
 
 
 if __name__ == "__main__":
