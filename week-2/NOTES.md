@@ -11,4 +11,3 @@
 * 20:00-20:10 - Break
 * 20:10-21:00
     * Story generator example.
-    * Loading and saving CSV and JSON files
