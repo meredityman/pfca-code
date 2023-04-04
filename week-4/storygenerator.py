@@ -91,10 +91,11 @@ def main():
 
     while(loopRunning):
         userinput = input("Get another character?\n")
-        
-        if(userinput == "yes"):
+        userinput = userinput.upper()
+
+        if(userinput == "YES" or userinput == "Y"):
             get_charachter()
-        elif(userinput == "no"):
+        elif(userinput == "NO" or userinput == "N"):
             break
         else:
             print("Input not recognised.")
@@ -102,5 +103,4 @@ def main():
 
 
 if __name__ == "__main__":
-    age = get_age(18, 121)
     main() 
