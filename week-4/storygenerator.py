@@ -44,13 +44,14 @@ story_ends   = [
 ]
 consequences = [
     "deeply contented", 
-    "inclines to enter the crypto-marketing space", 
+    "inclines to enter the crypto-marketing space, not a great idea", 
     "increasingly obsessed with flower arranging"
 ]
 
 
 story_format = "Started life as {story_start_var} and later {story_end_var}. As a result they feels {consequence_var}."
 
+csv_format = '"{fullRandomName}","{age}","{story}"\n'
 
 def getRandomListEntry(myList):
     numEntries = len(myList)
@@ -80,17 +81,32 @@ def get_charachter():
 
     fullRandomName = randomFirstName + " " + randomSecondName
 
-    print(f"Name: {fullRandomName}")
-    print(f"Age: {age}")
-    print(f"Story:\n{story}")
+    # print(f"Name: {fullRandomName}")
+    # print(f"Age: {age}")
+    # print(f"Story:\n{story}")
 
+    
+    csv_line = csv_format.format(
+        fullRandomName=fullRandomName,
+        age=age,
+        story=story
+    )
+    print(csv_line)
+
+    with open("characters.csv", "a") as csv_file:
+        csv_file.write(csv_line)
+
+    # Less safe way
+    # csv_file = open("characters.csv", "a")
+    # csv_file.write(csv_line)
+    # csv_file.close()
 
 
 def main():
     loopRunning = True
 
     while(loopRunning):
-        userinput = input("Get another character?\n")
+        userinput = input("Get another character? (y/n):\n")
         userinput = userinput.upper()
 
         if(userinput == "YES" or userinput == "Y"):
@@ -98,9 +114,11 @@ def main():
         elif(userinput == "NO" or userinput == "N"):
             break
         else:
-            print("Input not recognised.")
+            print("Input not recognised, please type 'y' or 'n'!")
         
 
 
 if __name__ == "__main__":
     main() 
+
+
