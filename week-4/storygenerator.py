@@ -90,8 +90,15 @@ def main():
     loopRunning = True
 
     while(loopRunning):
-        input("Get another character?")
-        get_charachter()
+        userinput = input("Get another character?\n")
+        
+        if(userinput == "yes"):
+            get_charachter()
+        elif(userinput == "no"):
+            break
+        else:
+            print("Input not recognised.")
+        
 
 
 if __name__ == "__main__":
