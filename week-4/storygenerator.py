@@ -60,9 +60,8 @@ def getRandomListEntry(myList):
 def get_age(lower, higher):
     return random.randrange(lower, higher)
 
-def main():
 
-
+def get_charachter():
     # Get random first name
     randomFirstName = getRandomListEntry(firstNames)
     randomSecondName = getRandomListEntry(secondNames)
@@ -84,6 +83,14 @@ def main():
     print(f"Name: {fullRandomName}")
     print(f"Age: {age}")
     print(f"Story:\n{story}")
+
+
+
+def main():
+    loopRunning = True
+
+    while(loopRunning):
+        get_charachter()
 
 
 if __name__ == "__main__":
