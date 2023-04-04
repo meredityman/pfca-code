@@ -90,6 +90,7 @@ def main():
     loopRunning = True
 
     while(loopRunning):
+        input("Get another character?")
         get_charachter()
 
 
