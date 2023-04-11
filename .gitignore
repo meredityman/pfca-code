@@ -139,6 +139,7 @@ venv.bak/
 
 # mkdocs documentation
 /site
+.fuse_hidden*
 
 # mypy
 .mypy_cache/
