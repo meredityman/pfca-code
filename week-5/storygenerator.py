@@ -1,57 +1,7 @@
 import random
+from template import html_body_template, html_template, story_format, csv_format
+from texts import firstNames, secondNames, story_starts, story_ends, consequences
 
-
-firstNames = [
-    "Zorin",
-    "Valtor",
-    "Nexa",
-    "Xandar",
-    "Qezal",
-    "Tazra",
-    "Krynn",
-    "Wryx",
-    "Yalara",
-    "Gornax",
-    "Nalax",
-    "Felnor",
-    "Zeltrax",
-    "Traxx",
-    "Rynex",
-    "Vexon",
-    "Kylera",
-    "Jaxar",
-    "Zylar",
-    "Zethron"
-]
-
-secondNames = [
-    "Troooble",
-    "Scrungee",
-    "Leeber",
-    "Fromw"
-]
-
-
-story_starts = [
-    "a plumber", 
-    "an astronaut", 
-    "a loner"
-]
-story_ends   = [
-    "became a sardine", 
-    "took up tufting as a hobby", 
-    "ate a whole box of donuts"
-]
-consequences = [
-    "deeply contented", 
-    "inclines to enter the crypto-marketing space, not a great idea", 
-    "increasingly obsessed with flower arranging"
-]
-
-
-story_format = "Started life as {story_start_var} and later {story_end_var}. As a result they feels {consequence_var}."
-
-csv_format = '"{fullRandomName}","{age}","{story}"\n'
 
 def getRandomListEntry(myList):
     numEntries = len(myList)
@@ -85,7 +35,6 @@ def get_charachter():
     # print(f"Age: {age}")
     # print(f"Story:\n{story}")
 
-    
     csv_line = csv_format.format(
         fullRandomName=fullRandomName,
         age=age,
@@ -96,10 +45,18 @@ def get_charachter():
     with open("characters.csv", "a") as csv_file:
         csv_file.write(csv_line)
 
-    # Less safe way
-    # csv_file = open("characters.csv", "a")
-    # csv_file.write(csv_line)
-    # csv_file.close()
+
+    # HTML
+    html_body = html_body_template.format(
+        fullRandomName=fullRandomName,
+        age=age,
+        story=story
+    )
+    html = html_template.format(body=html_body)
+
+    with open("characters.html", "w") as html_file:
+        html_file.write(html)
+
 
 
 def main():
