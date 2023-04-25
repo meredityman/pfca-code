@@ -2,12 +2,21 @@ import random
 from template import html_body_template, html_template, story_format, csv_format
 from texts import firstNames, secondNames, story_starts, story_ends, consequences
 import uuid
+from pathlib import Path
+
+
+
 
 class Person:
     
-    def __init__(self):
+    def __init__(self, output_path):
+
+        self.root_output_path = Path(output_path)
+        self.root_output_path.mkdir(exist_ok=True) # ./outputs
 
         self.uuid = uuid.uuid4()
+        self.output_path = Path(self.root_output_path, f"{self.uuid}")
+        self.output_path.mkdir() # ./outputs/37abaf74-dcf7-49e4-bf75-364d44b04659
         print(f"Person created: {self.uuid}")
 
         randomFirstName = getRandomListEntry(firstNames)
@@ -41,7 +50,7 @@ class Person:
             story          = self.story
         )
 
-        with open("characters.csv", "a") as csv_file:
+        with open(Path(self.root_output_path, "characters.csv"), "a") as csv_file:
             csv_file.write(csv_line)
 
 
@@ -53,7 +62,7 @@ class Person:
         )
         html = html_template.format(body=html_body)
 
-        file_name = f"characters_{self.uuid}.html"
+        file_name = Path(self.output_path, f"characters_{self.uuid}.html")
         with open(file_name, "w") as html_file:
             html_file.write(html)
         
@@ -69,6 +78,8 @@ def get_age(lower, higher):
 
 
 def main():
+    output_path = Path("outputs")
+
     loopRunning = True
 
     while(loopRunning):
@@ -76,7 +87,7 @@ def main():
         userinput = userinput.upper()
 
         if(userinput == "YES" or userinput == "Y"):
-            person = Person()
+            person = Person(output_path)
             print(person)
             person.saveToHtml()
         elif(userinput == "NO" or userinput == "N"):
