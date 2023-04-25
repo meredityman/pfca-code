@@ -3,9 +3,12 @@ from template import html_body_template, html_template, story_format, csv_format
 from texts import firstNames, secondNames, story_starts, story_ends, consequences
 import uuid
 from pathlib import Path
+import requests
 
-
-
+API_URL = "https://api-inference.huggingface.co/models/gpt2"
+headers = {
+	"Authorization": "Bearer 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"
+}
 
 class Person:
     
@@ -28,11 +31,12 @@ class Person:
 
         self.age = get_age(18, 121)
 
-        self.story = story_format.format(
-            story_start_var = story_start,
-            story_end_var   = story_end,
-            consequence_var = consequence
-        )   
+        # self.story = story_format.format(
+        #     story_start_var = story_start,
+        #     story_end_var   = story_end,
+        #     consequence_var = consequence
+        # )   
+        self.story = self.getGetStory(story_start, story_end, consequence)
 
         self.fullRandomName = randomFirstName + " " + randomSecondName
 
@@ -41,6 +45,25 @@ class Person:
         Age: {self.age}
         uuid: {self.uuid}
         Story: {self.story}"""
+    
+    def getGetStory(self, story_start, story_end, consequence):
+
+        promt = story_format.format(
+            story_start_var = story_start,
+            story_end_var   = story_end,
+            consequence_var = consequence
+        )
+
+        response = requests.post(
+            API_URL, 
+            headers = headers, 
+            json = {
+                "inputs": promt
+            }
+        )
+        return response.json()[0]['generated_text']
+
+
 
     def saveToCsv(self):
 
