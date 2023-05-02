@@ -4,10 +4,13 @@ from texts import firstNames, secondNames, story_starts, story_ends, consequence
 import uuid
 from pathlib import Path
 import requests
+from PIL import Image
+import io
 
-API_URL = "https://api-inference.huggingface.co/models/gpt2"
+API_URL_TEXT = "https://api-inference.huggingface.co/models/gpt2"
+API_URL_IMAGE = "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-2"
 headers = {
-	"Authorization": "Bearer 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"
+	"Authorization": "" # Code here
 }
 
 class Person:
@@ -40,6 +43,8 @@ class Person:
 
         self.fullRandomName = randomFirstName + " " + randomSecondName
 
+        self.image = self.getImage()
+
     def __str__(self):
         return f"""Name: {self.fullRandomName}
         Age: {self.age}
@@ -55,7 +60,7 @@ class Person:
         )
 
         response = requests.post(
-            API_URL, 
+            API_URL_TEXT, 
             headers = headers, 
             json = {
                 "inputs": promt
@@ -66,10 +71,26 @@ class Person:
             return response.json()[0]['generated_text']
         else:
             print(f"Error {response.status_code}")
+            return promt
+
+
+    def getImage(self):
+        response = requests.post(
+            API_URL_IMAGE, 
+            headers = headers, 
+            json = {
+                "inputs": self.story
+            }
+        )
+
+        if(response.status_code == 200):
+            print("Stable diffusion returned")
+            image_bytes = response.content
+            image = Image.open(io.BytesIO(image_bytes))
+            return image
+        else:
+            print(f"Error {response.status_code}")
             return None
-
-
-
 
     def saveToCsv(self):
 
@@ -84,7 +105,13 @@ class Person:
 
 
     def saveToHtml(self):
+        image_path = Path(self.output_path, f"{self.uuid}.jpg")
+
+        if(self.image is not None):
+            self.image.save(image_path)
+
         html_body = html_body_template.format(
+            imagePath      = image_path.name,
             fullRandomName = self.fullRandomName,
             age            = self.age,
             story          = self.story
@@ -93,13 +120,10 @@ class Person:
 
         file_name = Path(self.output_path, f"characters_{self.uuid}.html")
 
-        # /home/me/data/my_file.txt
-        # file_name.stem = my_file
-        # file_name.name = my_file.txt
-        # file_name.parent = /home/me/data/
-
         with open(file_name, "w") as html_file:
             html_file.write(html)
+
+
         
 
 
