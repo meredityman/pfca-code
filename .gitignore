@@ -141,7 +141,10 @@ venv.bak/
 /site
 .fuse_hidden*
 
-# mypy
+*.blend1
+
+#
+ mypy
 .mypy_cache/
 .dmypy.json
 dmypy.json
