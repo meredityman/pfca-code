@@ -19,7 +19,7 @@ def get_card_image(image, fullRandomName, age):
 
     font       = ImageFont.truetype("Arial", 52)
     big_font   = ImageFont.truetype("Arial", 68)
-    text_color = (0, 0 ,0, 255)
+    text_color = (0, 0, 0, 255)
 
     name_text = f"sUPer OFIciAl eYE-D"
     draw.text( (int( 0.3 * width), 40), name_text,text_color ,font = big_font)

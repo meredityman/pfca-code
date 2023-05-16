@@ -6,7 +6,7 @@ from pathlib import Path
 import requests
 from PIL import Image
 import io
-
+import subprocess
 
 API_URL_TEXT = "https://api-inference.huggingface.co/models/gpt2"
 API_URL_IMAGE = "https://api-inference.huggingface.co/models/runwayml/stable-diffusion-v1-5"
@@ -130,6 +130,11 @@ class Person:
         if(self.image is not None):
             card_image = get_card_image(self.image, self.fullRandomName, self.age)
             card_image.save(image_path)
+
+        cmd = "/media/hdrive/Programs/Linux/blender-2.92.0-linux64/blender --background -y id_card.blend"
+        cmd += f" -- {self.output_path.resolve()}"
+        subprocess.run(cmd, shell=True)
+
 
         
 
